@@ -1,0 +1,58 @@
+using System;
+
+namespace ConsoleApp10
+{
+    internal class Task1
+    {
+        public static void Main()
+        {
+            int[] array = { 1, 2, 3, 4, 5 };
+            int k = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i < k; ++i)
+            {
+                int arrayLast = array[array.Length - 1];
+                for (int j = array.Length - 1; j > 0; j--)
+                    array[j] = array[j - 1];
+                array[0] = arrayLast;
+            }
+            for (int i = 0; i < array.Length; ++i)
+                Console.WriteLine(array[i]);
+        }
+    }
+    internal class Task2
+    {
+        static void Main()
+        {
+            int[] InSystemOfCalculationA = { 1, 2 };
+            var a = 8;
+            var b = 2;
+            var answer = MakeConversionD(MakeConversionDecimal(InSystemOfCalculationA, a), b);
+            for (int i = 0; i < answer.Length; i++)
+                Console.WriteLine(answer[i]);
+        }
+
+        public static int MakeConversionDecimal(int[] InSystemOfCalculationA, int a)
+        {
+            var Indecimal = 0;
+            for (int i = 0; i < InSystemOfCalculationA.Length; i++)
+                Indecimal += InSystemOfCalculationA[i] * (int)Math.Pow(a, InSystemOfCalculationA.Length - i - 1);
+            return Indecimal;
+        }
+
+        public static int[] MakeConversionD(int Indecimal, int b)
+        {
+            string InSystemOfCalculationBStr = "";
+            while (Indecimal > 0)
+            {
+                InSystemOfCalculationBStr += (Indecimal % b).ToString();
+                Indecimal /= b;
+            }
+            int[] nSystemOfCalculationBInt = new int[InSystemOfCalculationBStr.Length];
+            for (int i = 0; i < InSystemOfCalculationBStr.Length; i++)
+                nSystemOfCalculationBInt[i] = int.Parse(InSystemOfCalculationBStr[i].ToString());
+            Array.Reverse(nSystemOfCalculationBInt);
+            return nSystemOfCalculationBInt;
+        }
+    }
+}
